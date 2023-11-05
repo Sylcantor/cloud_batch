@@ -21,11 +21,10 @@ async def cleanup_batch(story_collection, user_collection,batch_size, skip):
         current_utc_time = datetime.utcnow()
 
         story_time = datetime.fromisoformat(story['timestamp'])
-        expiration_time = story_time + timedelta(minutes=story['duration'])
+        expiration_time = story_time + timedelta(hours=story['duration'])
 
         if current_utc_time > expiration_time:
             stories_to_remove.append(story['_id'])
-        stories_to_remove.append(story['_id'])
 
     if stories_to_remove:
          # Delete stories from story collection
